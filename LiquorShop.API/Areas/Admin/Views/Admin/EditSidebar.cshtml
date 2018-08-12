@@ -1,0 +1,46 @@
+﻿@model LiquorShop.API.Areas.Admin.Models.ViewModel.SidebarVM
+
+@{
+    ViewBag.Title = "Edit Sidebar";
+}
+
+<h2>EditSidebar</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SidebarDto.Id)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.SidebarDto.Body, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2" for="HasSidebar">Sidebar</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.SidebarDto.Body, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SidebarDto.Body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("SidebarDto.Body");
+    </script>
+}
+

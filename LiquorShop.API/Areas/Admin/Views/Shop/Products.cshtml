@@ -1,0 +1,132 @@
+﻿@model IEnumerable<LiquorShop.API.Areas.Admin.Models.ViewModel.ProductVM>
+
+@{
+    ViewBag.Title = "Products";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<h2>Products</h2>
+
+<select id="SelectedCategory" name="SelectedCategory">
+    <option value="0">All</option>
+    @foreach (var item in ViewBag.Categories)
+    {
+        if (ViewBag.SelectedCat == item.Value)
+        {
+            <option selected="selected" value="@item.Value">@item.Text</option>
+        }
+        else
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    }
+
+</select>
+
+<p>
+    @Html.ActionLink("Add Products", "AddProduct")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            Image
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var product in ViewBag.OnePageOfProducts)
+    {
+
+        <tr>
+            <td>
+                @product.ProductName
+            </td>
+            <td>
+                @product.Description
+            </td>
+            <td>
+                $@product.Price
+            </td>
+            <td>
+                @product.SKU
+            </td>
+            <td>
+                @product.Size
+            </td>
+            <td>
+                <a href="/Admin/Shop/EditProduct/@product.ProId">
+                    <img src="~/Images/@product.ProductName/@product.ImageName" />
+                </a>
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "EditProduct", new { id = product.ProId }) |*@
+                <a href="#" onclick="ConfirmDelete(@product.ProId)" class="delete">Delete</a>
+            </td>
+        </tr>
+    }
+
+
+</table>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Products", new { page, catId = ViewBag.SelectedCat }))
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    @*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
+
+    <script>
+
+        $(function () {
+            $("#SelectedCategory").on("change", function () {
+                var url = $(this).val();
+
+                if (url) {
+                    window.location = "/admin/shop/products?catId=" + url;
+                }
+            })
+            return false;
+        });
+
+
+        //Delete Pages
+
+        var ConfirmDelete=function (pId) {
+
+            var pgID = pId;
+            //var table = $("table#pages tbody");
+            //debugger;
+            $.ajax({
+                type: "DELETE",
+                url: '@Url.Action("DeleteProduct", "Shop")',
+                data: { id: pgID },
+                success: function (data) {
+                 var response = data.trim();
+                    if (response == "success") {
+                        location.reload();
+                    }
+                },
+                //error: function () {
+                //  debugger;
+                //    console.log(url);
+                //}
+
+            })
+        };
+
+
+    </script>
+}

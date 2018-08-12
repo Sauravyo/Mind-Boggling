@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquorShop.API", "LiquorShop.API\LiquorShop.API.csproj", "{6C2ECC8F-A216-4CA9-9786-177A948C7CA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquorShop_AppLayer", "LiquorShop_AppLayer\LiquorShop_AppLayer.csproj", "{7C2E34FD-EBF3-4FD4-9687-7ED4376E9452}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquorShop_DataLayer", "LiquorShop_DataLayer\LiquorShop_DataLayer.csproj", "{D8352D40-C410-4659-B76D-5817453B867F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Liquorshop.DataLayer", "Liquorshop.DataLayer", "{E87CA4BB-1C15-4F07-8507-112AB272AECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liquorshop.Datalayer.Repository", "Liquorshop.Datalayer.Repository\Liquorshop.Datalayer.Repository.csproj", "{00FEBFD6-AC99-4D67-831A-D8A50A0A0CED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Liquorshop.ApplicationLayer", "Liquorshop.ApplicationLayer", "{BC6DDCDC-E1BD-432B-8DFD-B72AA8B86E86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Liquorshop.PresentationLayer", "Liquorshop.PresentationLayer", "{927DF520-4FC2-4D93-9FDD-AADBE23A597B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C2ECC8F-A216-4CA9-9786-177A948C7CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2ECC8F-A216-4CA9-9786-177A948C7CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2ECC8F-A216-4CA9-9786-177A948C7CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2ECC8F-A216-4CA9-9786-177A948C7CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2E34FD-EBF3-4FD4-9687-7ED4376E9452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2E34FD-EBF3-4FD4-9687-7ED4376E9452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2E34FD-EBF3-4FD4-9687-7ED4376E9452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2E34FD-EBF3-4FD4-9687-7ED4376E9452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8352D40-C410-4659-B76D-5817453B867F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8352D40-C410-4659-B76D-5817453B867F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8352D40-C410-4659-B76D-5817453B867F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8352D40-C410-4659-B76D-5817453B867F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FEBFD6-AC99-4D67-831A-D8A50A0A0CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FEBFD6-AC99-4D67-831A-D8A50A0A0CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FEBFD6-AC99-4D67-831A-D8A50A0A0CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FEBFD6-AC99-4D67-831A-D8A50A0A0CED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C2ECC8F-A216-4CA9-9786-177A948C7CA0} = {927DF520-4FC2-4D93-9FDD-AADBE23A597B}
+		{7C2E34FD-EBF3-4FD4-9687-7ED4376E9452} = {BC6DDCDC-E1BD-432B-8DFD-B72AA8B86E86}
+		{D8352D40-C410-4659-B76D-5817453B867F} = {E87CA4BB-1C15-4F07-8507-112AB272AECE}
+		{00FEBFD6-AC99-4D67-831A-D8A50A0A0CED} = {E87CA4BB-1C15-4F07-8507-112AB272AECE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13555643-2ED1-4B80-86D7-2448E889D01A}
+	EndGlobalSection
+EndGlobal

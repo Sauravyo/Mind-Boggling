@@ -1,0 +1,117 @@
+﻿@model List<LiquorShop.API.Areas.Admin.Models.ViewModel.PageVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@*<script src="~/Scripts/jquery-1.12.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (!Model.Any())
+{
+    <h1 class="text-center">There no pages available</h1>
+}
+else
+{
+    <table class="table sorting" id="pages">
+        <tr class="home">
+            <th>
+                Title
+            </th>
+            <th>
+                Slug
+            </th>
+            <th>
+                Sidebar
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="@item.Pagedto.PageId" class="@item.Pagedto.Slug">
+                <td>
+                    @Html.DisplayFor(m => item.Pagedto.PageTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Pagedto.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Pagedto.HasSidebar)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPage", new { id = item.Pagedto.PageId })
+                    @Html.ActionLink("Details", "PageDetail", new { id = item.Pagedto.PageId })
+                    @if (item.Pagedto.Slug != "home")
+                    {
+                        <a href="#" onclick="ConfirmDelete(@item.Pagedto.PageId)" class="delete">Delete</a>
+                    }
+
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}
+
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+    <script>
+
+         //Reorder Pages
+        $(document).ready(function () {
+            $("table#pages tbody").sortable({
+                items: "tr:not(.home)",
+                placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $('table#pages tbody').sortable('toArray');
+                    console.log(ids)
+
+                    $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ReorderPages", "Admin")',
+                    data: { idz: ids },
+                    success: function (data) {
+
+                    },
+                    });
+                }
+            });
+
+        });
+
+
+        //Delete Pages
+
+        var ConfirmDelete=function (pId) {
+
+            var pgID = pId;
+            //var table = $("table#pages tbody");
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeletePage", "Admin")',
+                data: { id: pgID },
+                success: function (data) {
+                 var response = data.trim();
+                    if (response == "success") {
+                        location.reload();
+                    }
+                },
+                //error: function () {
+                //  debugger;
+                //    console.log(url);
+                //}
+
+            })
+        };
+
+    </script>
+}
